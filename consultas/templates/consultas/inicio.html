@@ -1,0 +1,2 @@
+{% extends 'consultas/base.html' %}
+{% block content %}<div class="card"><h1>Centro Médico Universitario</h1><p>Plataforma de gestión de consultas médicas UNCP.</p>{% if not user.is_authenticated %}<a class="btn" href="{% url 'login' %}">Iniciar sesión</a>{% endif %}</div>{% endblock %}

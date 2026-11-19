@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Centro Médico UNCP{% endblock %}</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:0;background:#f4f7fb;color:#183047}
+    nav{background:#075985;padding:14px 24px} nav a{color:white;margin-right:16px;text-decoration:none}
+    main{max-width:1000px;margin:auto;padding:24px}.card{background:white;border-radius:8px;padding:20px;box-shadow:0 2px 8px #ccc}
+    table{border-collapse:collapse;width:100%}th,td{padding:10px;border-bottom:1px solid #ddd;text-align:left}
+    input,select,textarea{width:100%;padding:8px;margin:5px 0 12px;box-sizing:border-box}.errorlist,.error{color:#b91c1c}
+    .btn{display:inline-block;background:#0284c7;color:white;padding:9px 14px;border-radius:5px;text-decoration:none;border:0}
+    .messages{background:#dcfce7;padding:10px}.warning{background:#fef3c7;padding:10px}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="{% url 'inicio' %}">Inicio</a>
+  {% if user.is_authenticated %}
+    <a href="{% url 'mis_citas' %}">Citas</a><a href="{% url 'cita_nueva' %}">Nueva cita</a>
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+  {% else %}<a href="{% url 'login' %}">Ingresar</a>{% endif %}
+  {% if user.is_superuser %}<a href="/admin/">Administración</a>{% endif %}
+</nav>
+<main>
+  {% if messages %}{% for message in messages %}<div class="{{ message.tags }} messages">{{ message }}</div>{% endfor %}{% endif %}
+  {% block content %}{% endblock %}
+</main>
+</body>
+</html>

@@ -1,0 +1,2 @@
+{% extends 'consultas/base.html' %}
+{% block content %}<div class="card"><h1>Historial clínico</h1><p>{{ paciente.nombres }} {{ paciente.apellidos }} | DNI {{ paciente.dni }} | {{ paciente.alergias }}</p>{% for consulta in consultas %}<article><h3>{{ consulta.cita.fecha }}</h3><p><strong>Diagnóstico:</strong> {{ consulta.diagnostico }}</p><p><strong>Tratamiento:</strong> {{ consulta.tratamiento }}</p></article>{% empty %}<p>Sin consultas registradas.</p>{% endfor %}</div>{% endblock %}
